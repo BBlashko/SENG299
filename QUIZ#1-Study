@@ -1,0 +1,174 @@
+Design Patterns
+
+SINGLETON:
+    \-> simplest of all the paterns and one of the most subtle
+    \-> Instantiates one and only one object.
+        \-> some objects we need only one of
+        \-> it is a convention for ensuring one and only one object is instantiated
+        \-> and it does not have many of the downsides of plain globals
+        
+        public class Singleton {
+             private static Singleton uniqueInstance;
+            
+             private Singleton() { }
+             public static Singleton getInstance () {
+                 if (uniqueInstance == null) {
+                 uniqueInstance = new Singleton();
+                 }
+                 return uniqueInstance;
+             }
+        }
+                 ___________________________           
+                |                           | 
+                |_________Class_____________| 
+                | private constructor       |          
+                | static unique instance    |        
+                | static getInstance()      |  
+                |___________________________|
+            
+        
+DECORATOR:
+    \-> has the same supertype as the objects they decorate
+    \-> can use one or multiple decorators to wrap and object
+    \-> possible to pass around a decorated object in place of the original (ie. wrapped) object
+    \-> Objects can be decorated at any time.
+    \-> add its own behavior before or after (or both!), and delegates to the object it decorates 
+        the rest of the job
+    
+    \-> attaches additional responsibilities to an object dynamically.
+    \-> provides a flexible alternative to subclassing for extending functionality
+    
+    Definition:
+        \-> each component can be used on its own or wrapped by a decorator
+        \-> each decorator HAS-A (wraps) a component, which means the secorator has an instance variable
+            that holds a reference to the component
+        \-> decorators implement the interface or abstract class as the component they will decorate.
+        \-> decorators can extend the state of the component
+        \-> concrete decorator has an instance variable for the thing it decorates (the component the decorator
+            wraps)
+        \-> decorators can add new methods; however, new behavior is typically added by doing computation 
+            before or after an exiting method in the component.
+            
+            
+                                      ___________________________
+                            |------->|    Abstract Component     |<-------|
+                            |        |___________________________|        |
+                            |                                             |
+                 ___________|_______________            __________________|________
+                |   Concrete Component      |          |    Component decorator    |
+                |       extends             |          |       Abstract/extends    |  
+                |___________________________|          |___________________________|  
+                                  
+    Consequences:
+        \-> BENEFIT: MOre flexible than static inheritance
+        \-> BENEFIT: Avoids feature-laden classes high up in the class hierarchy
+        \-> LIABILITY: A decorator and its component are not identical
+        \-> LIABILITY: Lots of little objects
+        
+    Summary:
+        \-> Inheritance: one form of extension, but not necessarily the best
+        \-> Principle: Favour composition over inheritance
+        \-> Principle: CLasses should be open for extension but closed for modification
+        \-> decorator Pattern prives an alternative to subclassing for extending behaviour
+        \-> Components can be wrapped with any number of decorators
+        \-> can result in many small objects in our design; overuse can result in complexity
+    
+TEMPLATE METHOD:
+    \-> defines the skeleton of an algorithm in a method, deferring some stpes to subclasses.
+    \-> lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure
+    
+                 ___________________________            ___________________________
+                |       abstract            |          |                           |
+                |_________Class_____________|          |  primitiveOperation1()    |  
+                | templateMethod() ---------|----------|  primitiveOperation2()    |
+                | primitiveOperation1()(abs)|          |                           |
+                | primitiveOperation2()(abs)|          |___________________________|
+                |___________________________|          
+                             ^                                     
+                             |                                      
+                 ____________|______________        
+                |      ConcreteClass        | 
+                |___________________________|
+                | primitiveOperation1()     |       
+                | primitiveOperation2()     |    
+                |___________________________|
+        
+        \-> abstract class contains the template method... and abstract versions of the operations used by
+            the template method.
+        \-> can be many concrete classes each implementing the full set of operations required by the template
+            method.
+        \-> the template method makes use of the primitiveOPerations to implement an algorithm. it is decoupled 
+        from the actual implementation of these operations
+        
+        Hooks: (overrides)
+            \-> extra condition statement that bases its success on a concrete method.
+            \-> the subclass can override specific methods but does not have to.
+        
+        Examples:
+            \-> Java Arrays Class: sort()
+            \-> swing JFrames
+            \-> java.awt.Component
+                \-> update()
+    
+FACADE:
+    \-> Reduces the number of objects a client interacts with
+                 ___________________________            ___________________________
+                |                           |          |                           |
+                |       Client A            |          |        Client B           |  
+                |___________________________|          |___________________________|
+                                          |              |
+                                          |              |
+                                      ____V______________V_______
+                            |--------|           Facade          |--------|
+                            |        |___________________________|        |
+                            |                                             |
+                 ___________V_______________            __________________V________
+                |                           |          |                           |
+                |       Class               |          |        Class              |  
+                |___________________________|          |___________________________|
+
+OBSERVER:
+    \-> Defines a one-to-many relationship so that when one object cahnges state, the others are 
+        notified and updated automatically
+        
+                 ___________________________            ___________________________
+                |       <<interface>>       |     0..* |        <<interface>>      |
+                |_________Subject___________|----------|__________Observer_________|  
+                | addlistener()             | observers| update()                  |
+                | removelistener()          |          |                           |
+                | notifylisteners()         |          |                           |
+                |___________________________|          |___________________________|
+                             ^                                       ^
+                             |                                       |
+                             |                                       |
+                 ____________|______________            _____________|_____________
+                |       <<interface>>       | 1        |    Concrete observer      |
+                |_________Subject___________|----------|________Observer___________|  
+                | addlistener() {...}       |          | update() {...}            |
+                | removelistener(){...}     |          |                           |
+                | notifylisteners(){...}    |          |                           |
+                |___________________________|   subject|___________________________|
+                
+    Summary:
+        \-> Allows different kinds of objects to react in their own way to an event
+        \-> The power of loose coupling
+            \-> the only thing the subject knows about an observer is that it implements a certain interface
+            \-> observers can be added at any time (they register themselves with the subject)
+            \-> No need to modify the subject to add new types of observers (the subject is 
+                coupled only to the observer base class)
+            \-> The subject broadcasts events to all registered observers
+            \-> changes to either the subjects or observers will not affect the other (clients configures the 
+                number and type of observers)
+    
+    When to use the observer pattern:
+        \-> an abstraction has two aspects, one dependent on the other. Encapsulatiing theses aspects in
+            seperate objects lets you vary and reuse them independently
+        \-> a change to one object requires changing others, and you dont know how many objects need to be 
+            changed.
+        \-> an bject should be able to notify other objects without making assumptions about who these objects 
+            are. you dont want these objects tightly coupled.
+                
+    
+ADAPTER:
+    
+COMPOSITE:
