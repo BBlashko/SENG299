@@ -170,5 +170,96 @@ OBSERVER:
                 
     
 ADAPTER:
+    Intent:
+        \-> Convert the interface of a class into another interface clients expect. Adapter lets classes work 
+            together that couldn't otherwise because of incompatible interfaces.
+         \-> Wrap exustubg cakss with a new interface.
+         \-> impedance match
+         
+    Problem:
+        \-> An "Off the shelf" component offers compelling functionality that you would like to reuse, but its
+            "view of the world" is not compatibvle with the philosophy and architecture of the system currently being
+            developed.
     
+    Discussion:
+        \-> is about creating an intermediary abstraction that translates, or maps, the old component with the new system.
+        \-> implemented with either inheritance or with aggregation.
+        
+    Structure:
+        
+         _____________      ______________________________
+        | Client      |--->|          <<interface>>       |
+        |_____________|    |_____________Shape____________|
+                           | +display(x1, y1, x2, y2)     |
+                           |______________________________|
+                                           ^
+                                           |
+                             ______________|______________          ____________________________
+                            |___________Rectangle_________|        |         <<adaptee>>        |
+                            | +display(x1, y1, x2, y2)    |------->|________LegacyRectangle_____|
+                            |_____________________________|        | +display(x1, y1, w, h)     |
+                                           :                       |____________________________|                                                                       : 
+                             ______________:_______________ 
+                            |Delegate and map to adaptee   |
+                            |______________________________|
+                            
+    Example:
+        Ratchet --->  Adapter ----> socket
+
 COMPOSITE:
+    Intent:
+        \-> Compose objects into tree structures to represent whole-part hierarchies. Composite lets clients
+            treat individual objects and compositions of objects uniformly.
+        \-> Recursive Composition.
+        \-> "directories contain entries, each of wich could be a directory".
+        \-> 1-to-many "has a" up the "is a" hierarchy.
+    
+    Problem:
+        \-> Application needs to manuipulate a hierarchical collection of "primitive" and composite" objects.
+        \-> Processing of primitive object is handled one way, and processing of a composite ibject is handled differently.
+        \-> having to query the "type" of each object before attempting to process it is not desirable.
+        
+    Discussion:
+        \-> use this pattern whenever you have "comosites taht contain components, each of which could be composite".
+        \-> Define an abstract base class(Component) that specifies the behavior that needs to be exercised uniformly 
+            across all primitive and composite classes off of the component class. Each composite object "couples" itself 
+            only to the abstract type component as it manages its "children".
+            
+    Structure:
+        
+                 ________________
+                |  <<interface>> |
+                |____Component___|<------------------------------------------------\
+                | +doThis()      |                                                 |
+                |________________|                                                 |
+                         ^                                                         |
+           ______________|___________________                                      |
+  ________|_________             ____________|____________                         |
+ |_______Leaf_______|           |________Composite________|       -elements        |
+ | +doThis()        |           | -elements               |<>----------------------/
+ |__________________|           |-------------------------|
+                                | +addElement()           |
+                                | +doThis()               |
+                                |_________________________|----:
+                                                               :
+                                                    ___________:_________________
+                                                   | //Container functionality  |
+                                                   | // for each element        |
+                                                   |elements[i].doThis();       |
+                                                   |____________________________|
+                         
+    Rules of Thumb:
+        \-> Composite and decorator have similar structure diagrams, reflecting the fact that both rely on 
+            recursive composition to organize an open ended number of objects.
+        \-> Composite can be traversed with iterator. Vistor can apply an operation over a composite. Composite 
+            could use chaing of responsibility to let components access global properties through their parent. 
+            It could use observer to tie on object structure to another and state to let a component change its 
+            behavior as its state changes.
+        \-> Composite can let you comnpose a mediator out of smaller pieces through recursive composition.
+        \-> decorator is designed to let you add responsibilities to objects without subclassing.
+            Composite's focus is not on embelishment but on representation. These intents are distinct but complementary.
+            Consequently, Composite and Decorator are often used in concert
+        \-> Flyweight is often combined with Composite to implement shared leaf nodes.
+         
+    
+    
