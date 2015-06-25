@@ -58,7 +58,14 @@ DECORATOR:
                 |   Concrete Component      |          |    Component decorator    |
                 |       extends             |          |       Abstract/extends    |  
                 |___________________________|          |___________________________|  
-                                  
+                                                                    |
+                                                                    |
+                                                        ____________|______________        
+                                                       |   ConcreteDecorator       | 
+                                                       |___________________________|
+                                                       |                           |      
+                                                       |___________________________|
+        
     Consequences:
         \-> BENEFIT: MOre flexible than static inheritance
         \-> BENEFIT: Avoids feature-laden classes high up in the class hierarchy
@@ -142,7 +149,7 @@ OBSERVER:
                              |                                       |
                              |                                       |
                  ____________|______________            _____________|_____________
-                |       <<interface>>       | 1        |    Concrete observer      |
+                |       Concrete Subject    | 1        |    Concrete observer      |
                 |_________Subject___________|----------|________Observer___________|  
                 | addlistener() {...}       |          | update() {...}            |
                 | removelistener(){...}     |          |                           |
@@ -173,12 +180,12 @@ ADAPTER:
     Intent:
         \-> Convert the interface of a class into another interface clients expect. Adapter lets classes work 
             together that couldn't otherwise because of incompatible interfaces.
-         \-> Wrap exustubg cakss with a new interface.
+         \-> Wrap existuing class with a new interface.
          \-> impedance match
          
     Problem:
         \-> An "Off the shelf" component offers compelling functionality that you would like to reuse, but its
-            "view of the world" is not compatibvle with the philosophy and architecture of the system currently being
+            "view of the world" is not compatible with the philosophy and architecture of the system currently being
             developed.
     
     Discussion:
@@ -220,7 +227,7 @@ COMPOSITE:
         \-> having to query the "type" of each object before attempting to process it is not desirable.
         
     Discussion:
-        \-> use this pattern whenever you have "comosites taht contain components, each of which could be composite".
+        \-> use this pattern whenever you have "composites that contain components, each of which could be composite".
         \-> Define an abstract base class(Component) that specifies the behavior that needs to be exercised uniformly 
             across all primitive and composite classes off of the component class. Each composite object "couples" itself 
             only to the abstract type component as it manages its "children".
@@ -231,21 +238,23 @@ COMPOSITE:
                 |  <<interface>> |
                 |____Component___|<------------------------------------------------\
                 | +doThis()      |                                                 |
-                |________________|                                                 |
+                |________________| child                                                |
                          ^                                                         |
            ______________|___________________                                      |
   ________|_________             ____________|____________                         |
  |_______Leaf_______|           |________Composite________|       -elements        |
- | +doThis()        |           | -elements               |<>----------------------/
- |__________________|           |-------------------------|
-                                | +addElement()           |
+ | +doThis()        |           | -childs                 |<>----------------------/
+ |__________________|           |-------------------------|         parent
+                                | +addchild()             |
+                                | +removechild()          |
+                                | +getchild()             |
                                 | +doThis()               |
                                 |_________________________|----:
                                                                :
-                                                    ___________:_________________
+                                                    ___________:________________
                                                    | //Container functionality  |
-                                                   | // for each element        |
-                                                   |elements[i].doThis();       |
+                                                   | // for each child          |
+                                                   |   child[i].doThis();       |
                                                    |____________________________|
                          
     Rules of Thumb:
