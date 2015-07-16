@@ -62,7 +62,40 @@ Architects questions:
                   modules, functions, etc) should be open for extension, but closed for modification", that is
                   such an entity can allow its behaviour to be modified without altering its source code.
         \-> reduce coupling:
-        
-        ❑ defer binding
+            ❑  options:
+                ❑ Encapsulate
+                    ❑ encapsulation introduces an explicit interface to a module. This interface includes an API 
+                      and its associated responsibilities, such as "perfor a syntatic transformation on an input
+                      parameter to an internal representation"
+                ❑ use an intermediary
+                    ❑ Given a dependency between responsibility A and responsibility B (eg. carrying out A first
+                      requires carrying out B), the dependecny can be broken by using an intermediary
+                      ❑ Eg, Publish-subscribe intermediary
+                      ❑ shared data repository to separate the readers of a piece of data from the writers of
+                        the data.
+                ❑ restrict dependencies
+                ❑ refactor
+                ❑ abstract common services
+            ❑ High coupling is bad for modifiability
+        \-> defer binding
+            ❑ Parameters are best-known mechanism for introducing flexibility; eg. f(a,b) is more general than 
+              f(a) that assumes b = 0;
+            ❑ At compile time or build time:
+                ❑ component replacement (eg in a build script or a makefuile)
+                ❑ compile-time parameterization
+                ❑ aspects
+            ❑ at deployment time:
+                ❑ configuration-time binding
+            ❑ at startup or initialization time:
+                ❑ Resource files
+            ❑ at runtime:
+                ❑ runtime registration, dynamic lookup (eg for services)
+                ❑ interpret parameters, startup time binding 
+                ❑ name servers, plug-ins, publish-subscribe, shared repositories
+                ❑ polymorphism
+                
+Design Checklist:
+    review in boook.... :(
+            
         
         
