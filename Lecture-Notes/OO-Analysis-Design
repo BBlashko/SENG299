@@ -1,0 +1,49 @@
+What is an object?
+  ❑ its a thing
+    ❑ system representation of a conceptual thing
+    ❑ may or may not represent some physical thing
+  ❑ it has a state
+  ❑ it has a behavior
+  
+Interfaces:
+  ❑ Public interface:
+    ❑ public implies another object exists in the system.
+    ❑ messages accepted by object regardless f sender
+    ❑ record selectors arg types
+    
+Polymorphism:
+  ❑ "many shapes"
+  ❑ not just in object-oriented languages
+    ❑ refers to a situation where some entity (usually an object) could have any one of several types
+  ❑ Polymorphic functions
+    ❑ can take arguments of different types
+  ❑ Relating it back to inheritance
+    ❑ an object of a subclass is usable anywhere an object of the superclass can be used
+  ❑ Very powerful; much more to inheritance that just code reuse
+  
+Polymorphism + dynamic binding:
+  ❑ Dynamic binding:
+    ❑ dynamic meand must occur when program running
+    ❑ binding means connecting some (message) name to an actual body of code
+    
+    
+UML the big picture:
+  
+  
+    Structural View:                         |                     Implementation View
+                                             |
+    Class diagrams                           |                     Component Diagram
+    object diagrams                          |  
+                                _____________________________
+                               |         User View           |
+    ___________________________|      use case diagrams      |________________________
+                               |                             |
+                               |_____________________________|
+    Behavioral View:                         |                      Deployment View:
+                                             |                      Environment View
+    Sequence Diagrams                        |
+    Collaboration Diagrams                   |
+    Statechart Diagrams                      |
+    activity diagrams                        |
+    
+    
