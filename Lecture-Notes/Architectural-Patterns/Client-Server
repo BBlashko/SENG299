@@ -1,0 +1,42 @@
+/* Lecture Notes - Seng299 */
+
+Client Server Patter:
+
+    Context:
+        ❑ There are shared resources and services that large number of distributed clients wish to access, and for
+          which we wish to controll access or quality of service
+          
+    Problem:
+        ❑ We want to improve scalability and availability by centralizing the control of these resources and services,
+          while distributing the resources themselves across multiple physical servers.
+          
+    Solution:
+        ❑ Clients interact by requesting services of servers.
+        
+    Overview:
+        ❑ Clients initiate interactions with servers, invoking services as needed from those servers and waiting
+          for the results of those requests.
+    
+    Elements:
+        ❑ Client, a component that invokes services of a server component. Clients have ports that describe the
+          services they require.
+        ❑ Server, a component that provides services to clients. Servers have ports that describe the services
+          they provide.
+          
+    Request/reply connector:
+        ❑ a data connector employing a request/reply protocol, used by a client to invoke services on a server.
+        ❑ Important characteristics include whether the calls are local or remote, and whether data is encrtypted
+
+    Relations:
+        ❑ The attachment relation associates clients with servers.
+    
+    Constraints:
+        ❑ Clients are connected to servers through request/reply connectors
+        ❑ server components can be clients to other servers
+    
+    Weaknesses:
+        ❑ Server can be a performance bottleneck
+        ❑ server can be a single point of failure
+        ❑ Decisions about where to locate functionality (in the client or in the server) are often complex
+          and costly to change after a system has been built
+        
