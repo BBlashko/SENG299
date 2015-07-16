@@ -1,0 +1,136 @@
+/* Lecture Notes Seng299 */
+
+Weeks 2.5 - 3.5:
+
+
+Architects:  
+    \-> Architects must be versatile:
+        ❑ Work with requirements team:
+            ❑ The architect plays an important rol in requirements gathering by understanding the overall
+              systems needs and esuring that the apprproate quality attributes are explicit and understood
+        ❑ Work with varius application stakeholders:
+            ❑ architects play a pivotal liaison role by making sure all the application's stakeholder needs
+              are understood and incorporated into the design
+        ❑ Lead the technical design team:
+            ❑ Defining the application architecture is a design activity
+        ❑ Work with the project management: Planning, estimates, budgets schedules
+    
+Software Architecture Process:
+    \-> Highly interactive
+    \-> Can scale to small/large project
+    
+    EG. 
+    
+        Determine Architectural 
+            Requirements        ------> Architecture Design         
+                ^                           ^            |----------------> Validation
+                |                           |-------------------------------------|
+                ------------------------------------------------------------------|
+                
+    Determine Architectural Requirements:
+        \-> Sometime called:
+            ❑ Architecturally significant requirements
+            ❑ Architecture use cases
+        \-> Essentually the quality and non-functional requirements for a system
+        
+        Functional        stakeholder      Determine Architecture      Architecture
+        requirements  +  requirements  =   Requirements            --> Requirements
+        
+        
+    Priorities:
+        \-> all requirements are not equal
+            ❑ High: the application must support this requirement
+            ❑ medium: This requirement will need to be supported at some stage
+            ❑ low: this is a part of the requirements wish list
+    
+Architecture Design:
+    \-> design steps are iterative
+    \-> Risk identification is a crucial output of the design
+                    
+            EG.                                 Architecture
+                                                Requirements
+                                                     |
+                                                     |
+                                                     V
+                                                Choose Architecture
+                                                Framework
+                                                     |
+                                                     |
+                                                     V
+                                                Allocate Components
+                                                 |               | 
+                                                 |               |
+                                                 V               V
+                                          Architecture         Architecture
+                                          Views                Document
+    
+    Choosing the architecture framework:
+        \-> CHoose a architecture pattern/patterns that suite requirements
+            ❑ no Magic formula
+            ❑ analyze requirements and quality attributed supported by each pattern
+        \-> Complex Architectures require creative blending of multiple patterns
+        
+    Guidelines:
+        \-> Minimize dependencies between components. Strive for a lossely coupled solution in which changes to
+            one componete do not ripple through the architecture, propagating across many components
+            ❑ Remember, every time you cahnge something, you have to re-test it
+        \-> Design components that encapsulate a highly "cohesive" set of responsibilities. Cohesion is a 
+            measure of how well the parts of a component fit together.
+        \-> Isolate dependencies on middleware and any COTS infrastructure technologies
+        \-> Use decomposition to struture components hierarchically
+        \-> Minimize calls between components, as these can prove costly if the components are distributed
+        
+Architecture Validation:
+    \-> Aim of the validation phase is to increase confidence of the design team that the architecture is fit for 
+        purpose
+    \-> The validation has to be achived within the project constraints of time and budget
+        ❑ the trick is to be as rigorous and efficient as possible
+    \-> Validating an architecture design poses tough challenges.
+        ❑ 'coz it's a design that can't be executed or tested
+        ❑ consists of new and COTS components that  have to be integrated
+    \-> Two main techniques:
+        ❑ Manual Testing of the architecture using test scenarios
+        ❑ Constrution of a prototype that creates a simple archetype of the desired application
+    \-> Aim of both is to identify potential flaws in the design so that they can be imporved before
+        implementation begins
+        ❑ Cheaper to fix before its built
+    
+    Scenarios:
+        -- a strategy to address Quality Attributes
+        
+        \-> involves defining:
+            ❑ a stimulus that will have a stimulus that will have an impact on the architecture
+            ❑ working out how thte architecture responds to this stimulus
+            
+        EG. MODIFIABILITY
+            Stimulus:
+                ❑ The custumer system packaged application is updated to an oracle databse
+            Response:
+                ❑ The validate component must be rewritten to interface to oracle system
+                
+        \-> If the reponse desirable, then a scenario is deemed to be satisfied by the architecture
+        \-> if the repsonse is undesirable, or hard to quantify, then a flaw or at least an area 
+            of risk in the architecture may have been uncovered
+            
+    Prototyping Strategy:
+        \-> Build minimal system required to validate architecture,
+            ❑ eg. An existing application shows that the queue and email systems are capabe of supporting 5000
+                  messages in 5 minutes
+              SO: write a test program that calls the customer system validation APIs 5000 times and
+                  record how long it takes.
+        \-> Prototypes should be used judicously to help reduce the risks inherent in a design
+        \-> Only way to address:
+            ❑ Performance
+            ❑ Scalability
+            ❑ Ease of integration
+            ❑ Capabilities of off-the-shelf components
+        \-> Need to be carfully scoped and managed:
+            ❑ Ideally take a day or two, a week, or at most 2 weeks
+            ❑ Usually thrown-way so keep them cheap
+            ❑ Don't let them acquire a life of their own
+        
+        
+        
+        
+        
+        
