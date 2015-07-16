@@ -1,0 +1,41 @@
+/* Lecture Notes Seng 299 */
+
+Peer-To-Peer Pattern:
+
+    Context:
+        ❑ Distributed computational entities need to cooperate and collaborate to provide a service to distributed
+          community of users
+
+    Problem: 
+        ❑ How can a set of "Equal" distributed computational entites be connected to each other via a common protocol
+          so that they can organize and shar their services with high availability and scalability?
+          
+    Solution:
+        ❑ In the peer-to-peer (p2p) pattern, components directly interact as peers. All perers are "equal" and no
+          peer or group of peers can be critical for the health of the system
+          
+    Overview:
+        ❑ Computation is achiveed by cooperating peers that request service from and provide services to one another
+          across a network.
+          
+    Elements:
+        ❑ Peer, which is an independent component running on a network node. Special peer components can provide
+          routing, indexing, and peer search capability
+        ❑ Request/reply connector, which is used to connect to the peer network, search for other peers, and invoke
+          services from other peers. In some cases, the need for a reply is done away with
+    
+    Relations:
+        ❑ The relation associates peers with their connectors. Attachments may change at runtime.
+    
+    Constraints:
+        ❑ Restrictions may be placed on the following
+            ❑ The number of allowable attachments to any given peer
+            ❑ the number of hops used for searching for peer
+            ❑ which peers know about which other peers
+            ❑ Some p2p networks are organized with star topologies, in which peers only connect to supernodes
+    
+    Weaknesses:
+        ❑ Managing security, data consistency, data/service availability, backup, and recovery are all more complex
+        ❑ small peer-topeer systems may not be able to consistently achieve quality goals as performance and
+          availabilty
+          
