@@ -79,10 +79,44 @@ QA-Review:
                 ❑ Choosing the communication mechanisms (between systems, between our systems and external
                   entities, between elements of our system) that realize those properties. IMportant properties
                   of communication mechanisms include stateful versus stateless, synchronous vs asynchronous,
-                  guaranteed
+                  guaranteed versus nongauranteed delievery, and performance-related propertites such as
+                  throughput and latency
             ❑ data model
-                ❑ 
+                ❑ Choosing the major data abstractions, their operations, and their  properties. THis
+                  includes determining how the data items are created, initialized, accessed, persisted,
+                  manipulated, translate, and destroyed
+                ❑ Compiling metadata needed for consistent interpretation of the data.
+                ❑ Organizing the data. This includes determing whether the data is going to be kept in the 
+                  relational database, a collection of objects, or both. if both, then the mapping between the
+                  two locations must be determined.
             ❑ management of resources
-            ❑ mapping among architectural elements
+                ❑ Identifying the resources that must be managed and determining the limites for each (eg CPU
+                  memory, battery, I/O ports etc)
+                ❑ Determining which system elements manage each resource
+                ❑ Determining how resources are shared and arbitration strategies employed when there is 
+                  contention.
+                ❑ Determining the impact of saturation on different resources
+                    ❑ eg. as a CPU becomes mroe heavily loaded, performance usually just degrades steadily.
+                          However when you run out of memory, you start paging.swapping intensively and
+                          performance suddenly crashes to a halt.
+            ❑ mapping among architectural elements:
+                ❑ The mappings of modules and runtime elements to each other -- that is, the runtime elements
+                  that are created from each module; the modules that contain the code for each runtime element
+                ❑ THe assignment of runtime elements to processors
+                ❑ the assignment of items in the data model to data stores
+                ❑ the mapping of modules and runtime elements to units of delivery
             ❑ binding time decisons
+                ❑ BInding time decidsions introduce allowable ranges of variation. this variation can be bound
+                  at different time in the software life cycle by a user
+                ❑ examples:
+                    ❑ build time selection of modules via a parameterized makefule
+                    ❑ runtime negotiation of protocols
+                    ❑ new peripheral devices pligged in a runtime, after which the system installs the right
+                      drivers
             ❑ choice of technology
+                ❑ Deciding which technologies are available
+                ❑ determining whether the available tools to support this technology choice are adequate
+                ❑ determining the extent of internal familiarity as well as the degree of external 
+                  support available for the technology
+                ❑ determining the side effects of choosing a technology, such as a required coordination model
+                ❑ determining whether a new technology is compatible with existing technology stack.
