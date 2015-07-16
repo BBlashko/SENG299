@@ -1,0 +1,56 @@
+/* Lecture Notes - Seng299 */
+
+Layered Pattern:
+
+    Context:
+         ❑ All complex systems experience the need to develop and evolve portions of the system independently
+    
+    Problem:
+         ❑ The software needs to be segmented in such a way that the modules can be developed and evolved separetely
+    
+    Solution:
+         ❑ To achive this separation of concerns, the layered pattern divides the software into units called layers.
+           Each layer is a grouping of modules that offers a cohesive set of services
+           
+    Overview:
+         ❑ The layered pattern defines layers (groupings of modules that offer a cohesive set of services) and a 
+           unidirectional allowed-to-use relation among the layers. The pattern is usually shown graphically by
+           stacking boxes representing layers on top of each other.
+    
+    Elements:
+         ❑ Layer a kind of module. The description of a layer should define what modules the layer contains and a
+           characterization of the cohesive set of services that the layer provides
+    
+    Relations:
+         ❑ Allowed to use, which is a specialization of a more generic depends-on relation. The design should define
+           what the layer usage rules are (e.g. "a ayer is allowed to use any lower layer" or "a layer is allowed 
+           to use only the layer immediatley below it") and any alloweable exceptions
+           
+    Constraints:
+         ❑ Every pieve of software is allocated to exavtly one layer
+         ❑ There are at least two layers (but usually there are three or more)
+         ❑ The allowed-to-use relations should not be circular (eg, a lower layer cannot use the layer above)
+         
+    Weaknesses:
+         ❑ The addtion of layers adds up-front cost and complexity to a system
+         ❑ Layers contribute a performance penalty
+         
+        
+    Diagram: 
+     __________________________________________________________________________________   _______________
+    |                                                               Applications       | |               |
+    |                                                               ___________________| |               |
+    |                                                              || Services         | |               |
+    |                                                     _________||__________________| |               |
+    |                                                    ||         Data Bank          | |               |
+    |                                         ___________||____________________________| |               |
+    |                                        ||             Environmental Models       | |               |
+    |                              __________||________________________________________| |               |
+    |                             ||                        Environment sensing        | |               |
+    |                     ________||___________________________________________________| |               |
+    |                   ||                                  JVM                        | | Security      |
+    |___________________||_____________________________________________________________| |_______________|
+     ____________________________________________________________________________________________________
+    |                                                                                                    |
+    |                                  OS and Hardware                                                   |
+    |____________________________________________________________________________________________________|
