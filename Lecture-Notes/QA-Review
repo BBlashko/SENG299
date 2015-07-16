@@ -1,0 +1,56 @@
+/* Lecture Notes - Seng299 */
+
+QA-Review:
+    
+    Quality Attributes:
+        ❑ A quality attribute (QA) is a measurable or testable property of a system that is used to indicate how 
+        well the system satisfies the needs of its stakeholders.
+
+    Categories of Requirements:
+        \-> Functional Requirements
+            ❑ what the SW should do
+        \-> Quality requirements
+            ❑ Qualifications (eg speed, reliability)
+        \-> Constraints:
+            ❑ coming from somewhere... Stakesholders, hardware, platforms...
+    
+    Architecture "Response":
+        \-> What is the "response" of architecture to each of these kinds of requirements?
+            ❑ Functional Requirements are satisfied by assigning an appropriate sequence of responsibilites
+              throughout the design.
+            ❑ Quality requirements  are satisfied by the various structures designed into the architecture, 
+              and the behaviours and interactions of the elements that populate those structures
+            ❑ Constraints are accepted into design decisions and reconciled with other affected design decisions
+    
+    Functionality:
+        ❑ is the ability of the system to do the work for which it was intended
+        ❑ of all of the requirements, functionality has the strangest relationship to architecture
+        
+    Quality Requirements:
+        ❑ Pertain to the functions of a system
+            ❑ how quickly does the dialog appear?(performance)
+            ❑ how often will this function fail? (availability)
+            ❑ how easy is it to learn this function? (usability)
+            
+    3 Problems with Quality Attributes:
+        1) testability:
+            ❑ many quality attributes are difficult to test
+        2) Mapping of concern to quality factor
+            ❑ eg: Is a system failure due to a denial-of-service attack an aspect of availability, an aspect
+                  of performance, an aspect of security, or an aspect of usability?
+        3) vocabulary:
+            ❑ Performance community: "failures", usability community: "user input"
+            
+    2 categories of Quality Attributes:
+        ❑ QAs that describe some property of the system at runtime, such as availability,
+          performance, or usability
+        ❑ QAs that describe some property of the development of the system, such as modifiability or testability
+        
+    Specifying QA requirements:
+        ❑ Stimulus:
+        ❑ Stimulus resource:
+        ❑ environment:
+        ❑ artifact
+        ❑ response
+        ❑ response measure
+        
