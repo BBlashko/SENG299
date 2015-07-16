@@ -1,0 +1,37 @@
+/* Lecture Notes - Seng299 */
+
+Publish-Subscribe Pattern
+
+    Context:
+        ❑ There are a number of independent producers and consumers of data that must interact
+    
+    Problem:
+        ❑ How can we create integration mechanisms that support the ability to transmit messages among the
+          producers and consumers in such a way that they are unaway of each other's identity
+          
+    Soltion:
+        ❑ In the publish-subscribe pattern, components interact via announced messages, or events. Components may
+          subscribe to a set of events.
+          
+    Overview:
+        ❑ Components publish and subscribe to events. When an event is announced by a component, the connector
+          infastructure dispatches the event to all registered subscribers.
+    
+    Elements:
+        ❑ Any C&C component with at least one publish or subscribe port
+        ❑ the publish-subscribe connector, which will have announce and listen roles for components that wish to
+          publish and subscribe to events.
+
+    Relations:
+        ❑ The attachment relation associates components with the publish-subscribe connector by prescribing which
+          components announce events and which components are registered to receive events
+          
+    Constraints:
+        ❑ All components are connected to an event distributor that may be viewed as either a bus --connector-- or
+          a component. Publish ports are attached to announce roles and subscribe ports are attached to listen
+          roles
+    
+    Weaknesses:
+        ❑ Typically, incvreases latency and has a negative effect on scalability and predictability of message
+          delivery time.
+        ❑ Less control over ordering of messages, and delivery of messages is not guaranteed.
