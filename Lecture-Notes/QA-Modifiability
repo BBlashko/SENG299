@@ -1,1 +1,68 @@
 /* Lecture Notes - Seng299 */
+
+Quality Attribute - Modifiability
+
+Modifiabiity:
+    ❑ The ability to change or alter a current architecture
+    
+
+Architects questions:
+    ❑ what can change?
+    ❑ what is the likelihood of change
+    ❑ when is the change made and who makes it?
+    
+    ❑ what is the cost of the change
+        ❑ the cost of introducing mechanisms to make the system more modifiable
+        ❑the cost of making the modification using the mechanisms
+        
+    Scenario:
+        
+        
+        Source:                 Stimulus:               Envrironment:       Response:           Response Measure:
+        Develper    ------->   Wishes to   --------->   Design Time   -----> Change Made  ----> In three hours
+                               change UI                Artifact:            and Unit
+                                                        code                 Tested
+                                                        
+                                                        
+        Source:
+            ❑ End user, developer, system administrator
+        Stimulus:
+            ❑ A directive to add/delete/modify functionality, or change a quality attribute, capacity, or 
+              technology
+        Artifacts:
+            ❑ Code, data, interfaces, components, resources, configurations... etc
+        Enivornment:
+            ❑ Runtime, compile time, build time, initiation time, design time
+        Response:
+            ❑ One or more of the following
+                ❑ make modification
+                ❑ deploy modification
+        Response measure:
+            ❑ Cost in terms of the following:
+                ❑ Number, size, complexity of affected artifacts
+                ❑ efort
+                ❑ calendar time
+                ❑ money (direct outlay or opportunity cost)
+                ❑ Extent to which this modification affects other functions or quality attributes
+                ❑ New defects introduced
+        
+        
+    Tactics for controlling Modifiability:
+        \-> Reduce size of a module
+            ❑ Split Module:
+                ❑ If the module being modified includes a great deal of capability, the modification costs will
+                  likley be high. Refining the module to several smaller modules should reduce the average cost
+                  of future changes.
+        \-> increase cohesion:
+            ❑ cohesion means:
+                ❑ unity of pupose
+            ❑ low cohesion is bad for modifiability'
+            ❑ Open/closed principle:
+                ❑ In object-oriented programming, the open/closed principle states "Sofware entities (classes,
+                  modules, functions, etc) should be open for extension, but closed for modification", that is
+                  such an entity can allow its behaviour to be modified without altering its source code.
+        \-> reduce coupling:
+        
+        ❑ defer binding
+        
+        
