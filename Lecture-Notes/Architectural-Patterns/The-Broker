@@ -1,0 +1,41 @@
+/* Lecture Notes - Seng299 */
+
+The Broker Patter:
+
+Context:
+    ❑ Many systems are constructed from a collection of services distributed across multiple servers
+
+Problem:
+    ❑ How do we structure distributed Software so that service users do not need to know the nature and
+      Locations of service providers, making it easy to dynamically change the bindings between users and providers
+
+Solution:
+    ❑ The Broker Pattern defines a runtime component, called a broker, that mediates the communication between a
+      number of clients and servers
+
+Elements:
+    ❑ Client, a requester of services
+    ❑ Server, a provider of services
+    ❑ Broker, an intermediary that locates an appropriate server to fulfill a client's request, forwards the request
+      to the server, and returns the results to the client
+    ❑ Client-side proxy, and intermediary that manages the acutal communication with the broker, including
+      marshaling, sending, and unmarshaling of messages.
+    ❑ Server-side proxy, an intermediary that manages the actual communication with the broker, including 
+      marshaling, sending, and unmarshaling of messages.
+
+Relations:
+    ❑ The attachment relation associates clients (and, optionally, client-side proxies) and servers
+      (and, opptionally, server-side proxies) with brokers
+      
+Constraints:
+    ❑ The client can only attack to a broker (potentially via a client-side proxy). The server can only attach to a 
+      broker (potentially via a server-side proxy)
+
+Weaknesses:
+    ❑ Brokers add a layer of indirection, and hence latency, between clients and servers and that layer may be a
+      communication bottleneck.
+    ❑ the broker can be a single point failure
+    ❑ a broker adds up-front complexity
+    ❑ a broker may be a target for security attacks
+    ❑ a broker may be difficult to test
+    
