@@ -1,0 +1,76 @@
+/* Lecture Notes - Seng299 */
+
+Model View Controller (MVC)
+
+What is a Pattern?
+    \-> An architectural pattern establishes a relationsjip between
+        \-> A context:
+            ❑ A recurring, common situation in the world that gives rise to a problem
+        \-> A problem:
+            ❑ the problem, appropriately generalized, that arises in the given context
+        \-> A solution:
+            ❑ A successful architectural resolution to the problem, appropriately abstracted. The solution for
+              The solution for a pattern is determined and describe by:
+                ❑ a set of element types (eg. data repositories, processes, and objects)
+                ❑ a set of interaction mechanisms or connectors (eg. method calls, events, or message bus)
+                ❑ A topological layout of the components 
+                ❑ a set of semantic constraints covering topology, element behaviour, and interaction mechanisms
+        
+
+MVC Pattern:
+    
+    Context:
+        ❑ User interface software is typically the most frequently modified portion of an interactive application
+    
+    Problem:
+        ❑ How can user interface functionality be kept separate from application functionality?
+    
+    Solution:
+        ❑ The model-vew-controller (MVC) pattern separates application functionality into three kinds of components
+        
+    
+    Overview:
+        ❑ THe MVC pattern breaks system functionality into three components: a model, a view, and a controller
+          that mediates between the model and the view
+    
+    Elements:
+        \-> Model:
+            ❑ is a representation of the application data or state, and it contains (or provides and interface to)
+              application logic.
+        \-> View:
+            ❑ is a user interface component that either produces a representation of th emodel for the user or allow 
+              for some f form of user input, or both.
+        \-> Controller:
+            ❑ Manages the interaction between the model and the view, translating user actions into changes to the 
+              model or changes to the view
+    
+    Relations:
+        ❑ The notifies relation connects instances of model, view, and controller, notifying elements of relevant
+          state changes
+    
+    Constraints:
+        ❑ There must be at least one instance each of model, view, and controller
+        ❑ THe model component should not interact directly with the controller.
+        
+    Weaknesses:
+        ❑ The complexity may not be worth it for simple user interfaces
+        ❑ the model, view, and controller abstractions may not be good fits for some user interface toolkits.
+        
+        
+    EXAMPLE! DIAGRAM  
+                                MODEL:
+                                    \-> Encapsulates application state
+    State Query ----------->        \-> Responds to state queries            <----------   State Change
+                |   == == ==        \-> Exposes application functionality               |
+                |  ||               \-> Notifies views of changes                       |
+                |  ||                                                                   |
+                |   V Change notification                                               |
+    VIEW:                                                        Controller:
+        \-> Renders the models                  View Selection      \-> DEfines Application Behavior
+        \-> Requests updates from models       <--------------      \-> Maps user actions to model updates
+        \-> Sends user gestures to controller  ==  ==  ==  ==  >    \-> Selectes view for response
+        \-> Allows controller to select view    User Gesutures      \-> One for each functionality
+                                    
+                == == == : Events
+                -------- : Method invocations
+                
