@@ -1,0 +1,299 @@
+/* Seng299 Lecture Notes */
+
+Week-1:
+
+What is Software Architecture?
+
+  Its about Software Design
+    \-> All architecture is software design, but not all design is software architecture
+    \-> Part of the design process
+    \-> Architecture focuses on issues that will be difficult/impossible to change once the system is built.
+      \-> quality attributes like security, performance
+      \-> Non-functional requirements like cost, deployment hardware
+      
+  Defines Structure:
+    \-> Decomposition of system into components/modules/subsystems
+    \->Architecture Defines:
+      \-> Component interfaces
+        \-> What a component can do 
+      \-> Component communications and dependencies
+        \-> How component communicate
+      \-> Component responsibilities
+        \-> Precisely what a component will do when you ask it
+        
+  Structure and Dependencies
+    \-> Modularize components to reduce direct dependencies with all components
+    
+      EG.     ________________  ________________  ________________  ________________
+             |                ||                ||                ||                |
+             |  Component 1   ||  Component 2   ||  Component 3   ||  Component 4   |
+             |                ||                ||                ||                |             
+             |________________||________________||________________||________________|
+                    |                  |                  |                  |
+                    |                  |                  |                  |
+                    |                  V ________________ V                  |
+                    \-----------------> |                | <-----------------/
+                                        |    Astraction  |
+                                        |     Layer      |
+                                        |________________|
+                                                 |
+                                                 |
+                                                 |
+                                                 V
+                                         ________________
+                                        |                |
+                                        | Third Party    |
+                                        | Component      |
+                                        |________________|
+  
+            ** Since all components are only in direct contact with the Abstraction Layer if the Third Party
+               Component were to replaced, changes are restricted to the Abraction layer and not each component
+            ** Ultimately creates more modifiable systems
+
+    Architecture Specifies Component Communcication
+        \-> Communication involves:
+            \-> Data passing mechanisms
+                \-> EG. Function Call
+                \-> REmote method invocation
+        \-> Control FLow
+            \-> Flow of messages between components to achieve required functionality
+            \-> Sequential
+            \-> Concurrent/Parallel
+            \-> Synchronization
+ 
+    Architecture Patterns/Styles
+        \-> Patterns catalogue successfull used structure that facilitate certain kinds of component communication
+            \-> client-server
+            \-> Message Broker
+            \-> Pipeline
+        \-> Patterns hava well-known characteristics appropriate for particular types of requirements
+        \-> Patterns are very useful things ..
+            \-> Reusable architectural BLueprints
+            \-> Help efficiently communicate a design
+            \-> Large systems comprise a number of individual patterns
+    
+    MODEL-VIEW-CONTROLLER (MVC) Architectural Pattern:
+
+                                MODEL:
+                                    \-> Encapsulates application state
+    State Query ----------->        \-> Responds to state queries            <----------   State Change
+                |   == == ==        \-> Exposes application functionality               |
+                |  ||               \-> Notifies views of changes                       |
+                |  ||                                                                   |
+                |   V Change notification                                               |
+    VIEW:                                                       Controller:
+        \-> Renders the models                  View Selection      \-> DEfines Application Behavior
+        \-> Requests updates from models       <--------------      \-> Maps user actions to model updates
+        \-> Sends user gestures to controller  ==  ==  ==  ==  >    \-> Selectes view for response
+        \-> Allows controller to select view    User Gesutures      \-> One for each functionality
+                                    
+                == == == : Events
+                -------- : Method invocations
+    
+    Architecture address Non-Functional Requirements (NFR)
+        \-> Non-Functional Requirements define 'how' a system works
+        \-> NFRs are constraints on how function requirements are to be implemented
+        \-> NFRs include:
+            \-> Technical constraints (eg. use java? or cater to Windows Platform?)
+            \-> Business constraints (eg. interface with particular tools?)
+            \-> Quality attributes 
+                \-> Scalablility
+                \-> usability
+                \-> durability
+                \-> maintainability
+                \-> Availability
+                \-> Security
+                \-> portability
+                \-> extensibility
+                \-> performance
+        
+    Architecture is an Abstraction:
+        \-> Architecture provides abstract view of a design
+            \-> Hides complexity of design 
+            \-> May or may not be a direct mapping between architecture elements and software elements
+        \-> Example - A marketecture
+            \-> informal depiction of system's structure and interactions
+            \-> portray the design philosophies embodied in the architecture
+            
+    Decomposition:
+        \-> Hierarchical decomposition is a powerful abstraction mechanism
+            \-> Partitions design
+            \-> allocate components to development teams
+            
+    Architecture Views:
+        \-> A software architecture represents a complex design artifact
+        \-> Many possible 'views' of the architecture
+            \-> Cf, with buildings - floor plan, external electrical, plumbing etc.
+        
+    Philippe Krutchen - 4 + 1 View Model
+        \-> Logical View:
+            \-> Describes architecturaally significant elemnts of archittecture and the relationships between
+                them.
+        \-> Process View:
+            \-> describes the concurrency and communications elements of an architecture 
+        \-> Physical View:
+            \-> Depicts how the mahor processes and components are mapped on to the applications hardware
+        \-> Development View:
+            \-> Captures the internal organization of software components as held in e.g. configuration
+                management tool
+        \-> Architecture Use Cases:
+            \-> Capture the requirements for the architecture; related to more than on particular view
+            
+    Quality Attribute Specification: (the -ilities)
+        \-> appart of an application's non-functional requirements
+        \-> QA's muste be contrete
+        \-> Often careful analysis of a proposed solution is all that is possible
+    
+        Performance:
+            \-> requires a metric amount of work performed in unit time
+            \-> deadline that must be met
+            \-> Strict requirements
+                \-> eg. 1000 transactions per second
+                \-> 3 second average latency for a request
+            
+            \-> Aspects:
+                \-> Throughput
+                    \-> Measure of the amount of work an application must perform in unit time 
+                    \-> many systems have low average but high peak throughput requirements
+                \-> Response Time
+                    \-> Measure of the latency an application exhibits in processing a request
+                \-> Dealines
+        
+        Scalability:
+            \-> How well a solution to some problem will work when the size of the problem increases
+            
+            Issues:
+                \-> Request load
+                    \-> (non reality) solution: increase amount of hardware capacity
+                \-> Connections
+                \-> Data size
+                \-> Deployments
+            
+            Reality:
+                \-> Adding more hard ware should improve performance:
+                    ❑ scalability must be achieved without modifications to application architecture
+                \-> but applications will exhibit a decrease in throughput and subsequent 
+                    exponential increase in response time
+                    ❑ Increased load causes increased contention for resources such as CPU, network and memory
+                    
+        Modifiability:
+            \-> MOdications to a sotware system during its lifetime are a fact of life
+            \-> Modifciable systems are easier to change/evolve
+            \-> Modifiablity should be assessed in context of how a sytem is likely to change
+                ❑ NO need to faciliate changes that are highly unlikely to ever occur
+                ❑ Over-engineering!
+            \-> impact is rearely easy to quantify
+            \-> the best possible is a:
+                ❑ convincing impact analysis of changes needed
+                ❑ a demonstration of how the solution can accomodate the modification without change
+            \-> Minimizing dependences increases modifiablity
+                ❑ Changes isolated to single components likely to be less expensive than those tha cause ripple 
+                  effects accross the architecture
+                ❑ However, risk of over-engineering the architeture (agile methods to the rescue!)
+                
+        Availability:
+            \-> Key requirement for most IT applications
+            \-> Measured by the proportion of the required time it is useable. 
+                EG.
+                    ❑ 100% available during businesss hours
+                    ❑ no more than 2 hours scheduled downtime per week
+            \-> Related to an applications Reliability
+                ❑ Unreliable applications suffer from poor availability
+            \-> Period of loss of availability determined by:
+                ❑ Time to detect failure
+                ❑ Time to correct failure
+                ❑ TIme to restart application
+            \-> Strategies for high availability:
+                ❑ Replication and failover
+                ❑ Automatic detection and restart
+            \-> Recoverability (eg a database)
+                ❑ the capability to reestablish performance levels and recover affected data after 
+                  an application or system failure
+                ❑ Mean time to recover thus an aimportant metric for AVAILABILITY
+        
+        Security:
+            \-> Difficult, specialized quality attribute:
+                ❑ Lots of technology available
+                ❑ Requires deep knowledge of approaches and solutions
+            \-> Security is a multi-faceted quality
+            
+            \-> Authentication:
+                ❑ Applications can verify the identity of their users and other applications with which they
+                  communicate
+            \-> Authorization:
+                ❑ Authenticated users and applications have defined access rights to the resources of the system
+            \-> Encryption:
+                ❑ the messages sent to/from the application are encrypted
+            \-> Integrity:
+                ❑ This ensures the contents of a message are not altered in transit 
+            \-> Non-repudiation:
+                ❑ THe sender of a message has proof of delivery and the receiver is assured of the sender's 
+                  identity. THis means neither can subsequently refute their participation in the message exchange
+        
+        Portability:
+            ❑ Can an application be easily executed on a different software/hardware platform to the on it has
+              been developed for.
+        
+        Testability:
+            ❑ How easy or difficult is an application to test?
+        
+        Supportability:
+            ❑ How easy an application is to support once it is deployed?
+            
+        Integration:
+            \-> Ease with which an application can be incorporated into a broader application context
+                ❑ Use component in ways that designers did not originally anticipate
+            \-> Typically acheived by:
+                ❑ Programmatic APIs
+                ❑ Data integration
+            
+            Strategies:
+                ❑ Data - Expose application data for access by other components
+                ❑ API - offers services to read/write application data through an abstracted interface
+                ❑ Each has strengths and weaknesses ...
+    
+    Design Trade-Offs:
+        \-> QAs are rarely orthogonal
+            ❑ the interact affect each other
+            ❑ highly secure system may be difficult to integrate
+            ❑ highly available application may trade-off lower performance for greater availability
+            ❑ high performance application may be tied to a given platform, and hence not be easily portable
+        
+        \-> Architects must create solutions that makes sensible desing compromises
+            ❑ not possible to fully satisfy all compeeting requirements
+            ❑ Must satisfy all stakeholder needs
+            ❑ this is the difficult bit!
+    
+    ICDE System:
+        \-> Information Capture and Dissemination Environment is a software system for providing intelligent
+            assistanc1e to" 
+                \-> financial analysts
+                \-> scientific researchers
+                \-> intelligence analysts
+                \-> analysts in other domains
+        ** an example of a case study to inllustrate concepts in the lectures
+        
+        ICDE performance issues"
+            \->  Response time:
+                \-> Overheads of trapping user events must be imperceptible to ICDE users
+                SOLTION:
+                    \->  Decouple user event capture from storage using a queue
+                    
+        ICDE Availability:
+            \-> Achieve 100% availability during business hours
+            \-> PLenty of scope for downtime for system upgrade, backup and maintenance
+            \-> include mechanisms for component replication and failover
+    
+    What does an architect do?
+        \-> Liaison with stakeholders
+        \-> technology knowledge
+        \-> software engineering
+        \-> risk managements
+    
+    Overall Learning outcomes:
+        \-> Design implementation and evaluation of software architecture
+        \-> Architecture develpment is an iterative, imperfect process
+        \-> Dealing with ambiguity, uncertainty
+        \-> Work in Project teams, develop presentation skills
+        
+    
