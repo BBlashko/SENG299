@@ -48,9 +48,41 @@ QA-Review:
         
     Specifying QA requirements:
         ❑ Stimulus:
+            ❑ Event, user opertations, attack, or mod. request
         ❑ Stimulus resource:
+            ❑ origin of the stimulus
         ❑ environment:
-        ❑ artifact
-        ❑ response
-        ❑ response measure
+            ❑ The stimulus occurs under certain conditions
+        ❑ artifact:
+            ❑ the part that is stimulated
+        ❑ response:
+            ❑ expected response of the system
+        ❑ response measure:
+            ❑ what signififes an acceptable response
         
+    Guiding Quality design decisions:
+        \-> Seven categories:
+            ❑ Allocation of responsibilities
+                ❑ Identifying the important responsibilites, including basic system functions, architectural
+                  infrastructure, and satisfaction of quality attributes
+                ❑ Determining how these respoinsibilities are allocated to non-runtime and runtime elements
+                  (namely, modules, components, and connectors)
+                ❑ Strategies for making these decisions include functional decomposition, modeling
+                  real-world objects, grouping based on the major modes of system operation, or grouping 
+                  based on similar quality requirements: processing frame rate, security level, or expected 
+                  changes.
+            ❑ coordination model
+                ❑ identifying the elements of the system that must coordinate or atre prohitbited from
+                  coordinating
+                ❑ Determining the properties of the coordination, such as timeliness, currency, completeness,
+                  correctness, and consistency
+                ❑ Choosing the communication mechanisms (between systems, between our systems and external
+                  entities, between elements of our system) that realize those properties. IMportant properties
+                  of communication mechanisms include stateful versus stateless, synchronous vs asynchronous,
+                  guaranteed
+            ❑ data model
+                ❑ 
+            ❑ management of resources
+            ❑ mapping among architectural elements
+            ❑ binding time decisons
+            ❑ choice of technology
